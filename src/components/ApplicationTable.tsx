@@ -48,11 +48,11 @@ export default function ApplicationTable({
           <tbody>
             {applications.map((app) => (
               <tr key={app.id} className="bg-white border-[#F7F7F7]">
-                <td className="p-1 border-b border-r text-center border-[#F0F0F0] ">
+                <td className="p-1 border-b  text-center border-[#F0F0F0] ">
                   {app.id}
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b  border-[#F0F0F0]">
                   <input
                     className="w-full p-1"
                     placeholder="Company"
@@ -63,7 +63,7 @@ export default function ApplicationTable({
                   />
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b  border-[#F0F0F0]">
                   <input
                     className="w-full p-1"
                     placeholder="Role"
@@ -72,7 +72,7 @@ export default function ApplicationTable({
                   />
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b border-[#F0F0F0]">
                   <input
                     type="date"
                     className="w-full p-1"
@@ -83,7 +83,7 @@ export default function ApplicationTable({
                   />
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b  border-[#F0F0F0]">
                   <select
                     className={`w-full p-1 ${
                       app.status === "Offer"
@@ -115,7 +115,7 @@ export default function ApplicationTable({
                   </select>
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b  border-[#F0F0F0]">
                   <input
                     className="w-full p-1"
                     placeholder="Location"
@@ -126,7 +126,7 @@ export default function ApplicationTable({
                   />
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b  border-[#F0F0F0]">
                   <input
                     className="w-full p-1"
                     placeholder="Resume Name"
@@ -137,7 +137,7 @@ export default function ApplicationTable({
                   />
                 </td>
 
-                <td className="p-1 border-b border-r border-[#F0F0F0]">
+                <td className="p-1 border-b  border-[#F0F0F0]">
                   <input
                     className="w-full p-1"
                     placeholder="---"

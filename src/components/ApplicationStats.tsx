@@ -43,6 +43,10 @@ export default function ApplicationStats({ applications }: Props) {
       (a) => a.status === "Interview",
     ).length;
 
+    const rejections = applications.filter(
+      (a) => a.status === "Rejected",
+    ).length;
+
     const offers = applications.filter((a) => a.status === "Offer").length;
 
     const replySamples = applications
@@ -65,11 +69,12 @@ export default function ApplicationStats({ applications }: Props) {
       interviewPercent: pct(interviews, total),
       offerPercent: pct(offers, total),
       avgReplyDays,
+      rejections,
     };
   }, [applications]);
 
   return (
-    <div className="font-manrope grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 mb-6">
+    <div className="font-manrope grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 mb-6">
       <StatCard
         label="Total"
         value={String(stats.total)}
@@ -82,6 +87,11 @@ export default function ApplicationStats({ applications }: Props) {
         label="Avg. Reply"
         value={stats.avgReplyDays === null ? "—" : `${stats.avgReplyDays} d`}
         hint="after applying"
+      />
+      <StatCard
+        label="Rejections"
+        value={stats.rejections.toString()}
+        after="Applications"
       />
     </div>
   );
@@ -113,14 +123,14 @@ function StatCard({
                   ? "text-[#065F46]"
                   : label === "Avg. Reply"
                     ? "text-[#78350F]"
-                    : ""
+                    : label === "Rejections"
+                      ? "text-[#8B0000]"
+                      : ""
         }`}
       >
         {value}
       </p>
-      <p className="text-xs font-medium text-neutral-600 text-[11px]">
-        {after}
-      </p>
+      <p className="text-[12px]  text-[#D8D9D2]">{after}</p>
       {hint ? (
         <p className="mt-1 text-[11px] leading-snug text-neutral-500">{hint}</p>
       ) : null}

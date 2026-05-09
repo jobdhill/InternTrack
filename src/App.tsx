@@ -14,6 +14,18 @@ export default function App() {
     createEmptyApplication(1),
   ])
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+    const filteredApplications = applications.filter((app) => {
+        const query = searchQuery.toLowerCase();
+        
+        return (
+          app.company.toLowerCase().includes(query) || 
+          app.role.toLowerCase().includes(query)
+        )
+    })
+  
+
   const updateApplication = useCallback(
     (id: number, changes: Partial<Application>) => {
       setApplications((previous) =>
@@ -33,9 +45,9 @@ export default function App() {
   return (
     <div className="min-h-screen p-6 font-manrope bg-[#F8F8FA]">
       <ApplicationStats applications={applications} />
-      <SearchBox/>
+      <SearchBox value={searchQuery} onChange={setSearchQuery}/>
       <ApplicationTable
-        applications={applications}
+        applications={filteredApplications}
         onUpdate={updateApplication}
         onAddRow={addRow}
       />
