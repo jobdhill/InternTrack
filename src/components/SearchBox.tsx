@@ -10,6 +10,7 @@ type SearchBoxProps = {
   onChange: (value: string) => void;
   statusFilter: StatusFilter;
   onStatusFilterChange: (status: StatusFilter) => void;
+  onAddRow: () => void;
 };
 
 const FILTERS: { label: StatusFilter; activeClass: string }[] = [
@@ -40,6 +41,7 @@ export default function SearchBox({
   onChange,
   statusFilter,
   onStatusFilterChange,
+  onAddRow,
 }: SearchBoxProps) {
   return (
     <div className="font-manrope mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -69,6 +71,13 @@ export default function SearchBox({
           );
         })}
       </div>
+      <button
+        type="button"
+        onClick={onAddRow}
+        className="ml-auto bg-[#F0F2F4] text-black rounded px-4 py-2 hover:bg-gray-300"
+      >
+        + Add Application
+      </button>
     </div>
   );
 }

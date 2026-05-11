@@ -3,16 +3,28 @@ import { EMPTY_STATUS } from "../types/application";
 
 type Props = {
   applications: Application[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+  onPageChange: (page: number) => void;
   onUpdate: (id: number, changes: Partial<Application>) => void;
   onAddRow: () => void;
 };
 
 export default function ApplicationTable({
   applications,
+  totalCount,
+  page,
+  pageSize,
+  onPageChange,
   onUpdate,
   onAddRow,
 }: Props) {
   const today = new Date().toLocaleDateString("en-CA");
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+  const safePage = Math.min(Math.max(page, 1), totalPages);
+  const rangeStart = totalCount === 0 ? 0 : (safePage - 1) * pageSize + 1;
+  const rangeEnd = Math.min(safePage * pageSize, totalCount);
   return (
     <div className="w-full h-full overflow-x-auto space-y-3">
       <div className="rounded-xl shadow-sm overflow-hidden bg-white border border-[#F0F0F0]">
@@ -47,6 +59,16 @@ export default function ApplicationTable({
           </thead>
 
           <tbody>
+            {applications.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={8}
+                  className="p-6 text-center text-sm text-[#9CA3AF]"
+                >
+                  No applications match your filters.
+                </td>
+              </tr>
+            ) : null}
             {applications.map((app) => (
               <tr key={app.id} className="bg-white border-[#F7F7F7]">
                 <td className="p-1 border-b  text-center border-[#F0F0F0] ">
@@ -156,13 +178,43 @@ export default function ApplicationTable({
           </tbody>
         </table>
       </div>
-      <button
-        type="button"
-        onClick={onAddRow}
-        className="bg-[#F0F2F4] text-black rounded px-4 py-2 hover:bg-gray-300"
-      >
-        + Add Application
-      </button>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={onAddRow}
+          className="bg-[#F0F2F4] text-black rounded px-4 py-2 hover:bg-gray-300"
+        >
+          + Add Application
+        </button>
+        <div className="flex flex-wrap items-center gap-3 text-xs text-[#6B7280]">
+          <span className="tabular-nums">
+            {totalCount === 0
+              ? "0 applications"
+              : `Showing ${rangeStart}\u2013${rangeEnd} of ${totalCount}`}
+          </span>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={() => onPageChange(safePage - 1)}
+              disabled={safePage <= 1}
+              className="px-3 h-8 rounded-[10px] border border-[#F0F0F0] bg-white shadow-sm transition-colors hover:bg-[#F3F4F6] hover:text-[#374151] disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-[#6B7280] disabled:cursor-not-allowed"
+            >
+              Previous
+            </button>
+            <span className="px-2 tabular-nums">
+              Page {safePage} / {totalPages}
+            </span>
+            <button
+              type="button"
+              onClick={() => onPageChange(safePage + 1)}
+              disabled={safePage >= totalPages}
+              className="px-3 h-8 rounded-[10px] border border-[#F0F0F0] bg-white shadow-sm transition-colors hover:bg-[#F3F4F6] hover:text-[#374151] disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-[#6B7280] disabled:cursor-not-allowed"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -92,13 +92,13 @@ function PipelineFunnel({ applications }: Props) {
         label: "Interview+",
         value: interviewPlus,
         color: "#2E6E84",
-        percent: pct(interviewPlus, responded),
+        percent: pct(interviewPlus, applied),
       },
       {
         label: "Offer",
         value: offer,
         color: "#3DB484",
-        percent: pct(offer, interviewPlus),
+        percent: pct(offer, applied),
       },
     ];
   }, [applications]);

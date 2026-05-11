@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ApplicationStats from "../components/ApplicationStats";
 import ApplicationTable from "../components/ApplicationTable";
 import DashboardCharts from "../components/DashboardCharts";
@@ -9,6 +9,8 @@ import {
   nextApplicationId,
 } from "../types/application";
 
+const PAGE_SIZE = 15;
+
 export default function DashboardPage() {
   const [applications, setApplications] = useState<Application[]>(() => [
     createEmptyApplication(1),
@@ -16,6 +18,7 @@ export default function DashboardPage() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("All");
+  const [page, setPage] = useState(1);
 
   const filteredApplications = applications.filter((app) => {
     const query = searchQuery.toLowerCase();
@@ -26,6 +29,31 @@ export default function DashboardPage() {
       statusFilter === "All" ? true : app.status === statusFilter;
     return matchesQuery && matchesStatus;
   });
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredApplications.length / PAGE_SIZE),
+  );
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  const pageStart = (page - 1) * PAGE_SIZE;
+  const pageApplications = filteredApplications.slice(
+    pageStart,
+    pageStart + PAGE_SIZE,
+  );
+
+  const handleSearchChange = useCallback((value: string) => {
+    setSearchQuery(value);
+    setPage(1);
+  }, []);
+
+  const handleStatusFilterChange = useCallback((value: StatusFilter) => {
+    setStatusFilter(value);
+    setPage(1);
+  }, []);
 
   const updateApplication = useCallback(
     (id: number, changes: Partial<Application>) => {
@@ -42,7 +70,8 @@ export default function DashboardPage() {
       createEmptyApplication(nextApplicationId(previous)),
     ]);
     setStatusFilter("All");
-  }, []);
+    setPage(Math.ceil((applications.length + 1) / PAGE_SIZE));
+  }, [applications.length]);
 
   return (
     <div className="min-h-screen p-6 font-manrope bg-[#F8F8FA]">
@@ -50,12 +79,17 @@ export default function DashboardPage() {
       <ApplicationStats applications={applications} />
       <SearchBox
         value={searchQuery}
-        onChange={setSearchQuery}
+        onChange={handleSearchChange}
         statusFilter={statusFilter}
-        onStatusFilterChange={setStatusFilter}
+        onStatusFilterChange={handleStatusFilterChange}
+        onAddRow={addRow}
       />
       <ApplicationTable
-        applications={filteredApplications}
+        applications={pageApplications}
+        totalCount={filteredApplications.length}
+        page={Math.min(page, totalPages)}
+        pageSize={PAGE_SIZE}
+        onPageChange={setPage}
         onUpdate={updateApplication}
         onAddRow={addRow}
       />
