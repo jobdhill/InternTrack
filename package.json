@@ -10,10 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.8",
     "@supabase/supabase-js": "^2.105.4",
+    "@tailwindcss/vite": "^4.3.0",
+    "clsx": "^2.1.1",
+    "input-otp": "^1.4.2",
+    "lucide-react": "^1.17.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "react-router-dom": "^7.15.1"
+    "react-router-dom": "^7.15.1",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
