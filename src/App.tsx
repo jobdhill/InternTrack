@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Signup from "./pages/auth/Signup";
 import VerifyEmail from "./pages/auth/VerifyEmail";
+import Terms from "./pages/Terms";
 import { AuthProvider } from "./lib/AuthContext";
 import RequireAuth from "./components/auth/RequireAuth";
 import RedirectIfAuth from "./components/auth/RedirectIfAuth";
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/verify" element={<VerifyEmail />} />
+          <Route path="/terms" element={<Terms />} />
           <Route
             path="/app"
             element={

@@ -163,14 +163,32 @@ export default function ApplicationTable({
                   />
                 </td>
 
-                <td className="p-1 border-b  border-[#F0F0F0]">
-                  <input
-                    className="w-full p-1"
+                <td className="p-1 border-b  border-[#F0F0F0] align-top">
+                  <textarea
+                    rows={1}
+                    className="w-full p-1 resize-none overflow-y-auto leading-snug"
                     placeholder="---"
                     value={app.notes}
-                    onChange={(e) =>
-                      onUpdate(app.id, { notes: e.target.value })
-                    }
+                    ref={(el) => {
+                      if (el) {
+                        const lineHeight = parseFloat(
+                          getComputedStyle(el).lineHeight,
+                        );
+                        const maxHeight = lineHeight * 5 + 8;
+                        el.style.height = "auto";
+                        el.style.height = `${Math.min(el.scrollHeight, maxHeight)}px`;
+                      }
+                    }}
+                    onChange={(e) => {
+                      const el = e.target;
+                      const lineHeight = parseFloat(
+                        getComputedStyle(el).lineHeight,
+                      );
+                      const maxHeight = lineHeight * 5 + 8;
+                      el.style.height = "auto";
+                      el.style.height = `${Math.min(el.scrollHeight, maxHeight)}px`;
+                      onUpdate(app.id, { notes: el.value });
+                    }}
                   />
                 </td>
               </tr>

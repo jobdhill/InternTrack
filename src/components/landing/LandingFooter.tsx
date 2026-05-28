@@ -16,11 +16,11 @@ export default function LandingFooter() {
           <Link to="/signup" className="hover:text-[#0F172A]">
             Sign up
           </Link>
-          <a href="#" className="hover:text-[#0F172A]">
-            Privacy
-          </a>
+          <Link to="/terms" className="hover:text-[#0F172A]">
+            Privacy & Terms
+          </Link>
           <a
-            href="CHANGE THIS"
+            href="mailto:support@internnext.com"
             className="hover:text-[#0F172A]"
           >
             Contact

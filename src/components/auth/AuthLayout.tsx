@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import BrandMark from "./BrandMark";
 import DashboardPreview from "./DashboardPreview";
 
@@ -11,7 +12,9 @@ export default function AuthLayout({ children }: Props) {
     <div className="min-h-screen font-manrope bg-white grid lg:grid-cols-[minmax(420px,_42%)_1fr]">
       <div className="flex flex-col px-6 sm:px-14 lg:px-16 py-10 min-h-screen">
         <header className="mb-12">
-          <BrandMark />
+          <Link to="/">
+            <BrandMark />
+          </Link>
         </header>
 
         <main className="flex-1 max-w-md w-full">{children}</main>
@@ -19,12 +22,18 @@ export default function AuthLayout({ children }: Props) {
         <footer className="mt-12 flex items-center justify-between text-xs text-[#9CA3AF]">
           <span>© 2026 InternTrack</span>
           <div className="flex gap-5">
-            <a className="hover:text-[#374151] transition-colors" href="#">
+            <Link
+              to="/terms"
+              className="hover:text-[#374151] transition-colors"
+            >
               Terms
-            </a>
-            <a className="hover:text-[#374151] transition-colors" href="#">
+            </Link>
+            <Link
+              to="/terms"
+              className="hover:text-[#374151] transition-colors"
+            >
               Privacy
-            </a>
+            </Link>
           </div>
         </footer>
       </div>

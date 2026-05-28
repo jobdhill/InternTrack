@@ -17,7 +17,7 @@ export default function LandingNav() {
           </Link>
           <Link
             to="/signup"
-            className="inline-flex items-center rounded-full bg-[#0F172A] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:ring-offset-2"
+            className="inline-flex items-center rounded-full bg-[#0F172A] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:ring-offset-2"
           >
             Sign up free
           </Link>

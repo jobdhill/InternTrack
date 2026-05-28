@@ -105,13 +105,13 @@ function PipelineFunnel({ applications }: Props) {
   }, [applications]);
 
   const maxValue = Math.max(stages[0].value, 1);
-  const heightAt = (v: number) => Math.max(10, (v / maxValue) * 70);
+  const heightAt = (v: number) => Math.max(24, (v / maxValue) * 70);
   const heights = [
     heightAt(stages[0].value),
     heightAt(stages[1].value),
     heightAt(stages[2].value),
     heightAt(stages[3].value),
-    Math.max(8, heightAt(stages[3].value) * 0.5),
+    Math.max(20, heightAt(stages[3].value) * 0.5),
   ];
 
   const W = 400;
@@ -245,7 +245,7 @@ function ResumePerformance({ applications }: Props) {
   const palette = ["#34D399", "#7C7BD0", "#D1D5DB", "#D1D5DB", "#D1D5DB"];
 
   return (
-    <ChartCard title="Resume performance · Interview rate">
+    <ChartCard title="Resume performance · Interview+ rate">
       <div className="flex-1 flex flex-col justify-center gap-2.5">
         {resumes.length === 0 ? (
           <div className="text-xs text-[#9CA3AF] text-center py-4">
@@ -330,15 +330,13 @@ function AppsPerInterview({ applications }: Props) {
         </div>
         {stats.interviews > 0 ? (
           <div className="text-[10px] text-[#9CA3AF] mt-0.5 tabular-nums">
-            {stats.interviews}{" "}
-            {stats.interviews === 1 ? "interview" : "interviews"} ·{" "}
-            {stats.total} apps
+            {stats.interviews} reached interview · {stats.total} apps
           </div>
         ) : null}
       </div>
       <div className="mt-2 pt-2 border-t border-[#F4F5F7] text-[10px] text-[#9CA3AF] leading-snug text-center">
-        Average is around 1 interview every {AVG_APPS_PER_INTERVIEW}{" "}
-        applications.
+        Counts both Interview and Offer statuses. Average is around 1 every{" "}
+        {AVG_APPS_PER_INTERVIEW} applications.
       </div>
     </ChartCard>
   );

@@ -104,7 +104,7 @@ const FEATURES: Feature[] = [
   },
   {
     title: "Free forever",
-    body: "Built by a student, for students. No paywall on core tracking. No credit card to sign up.",
+    body: "No paywall on core tracking. No credit card to sign up.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className={ICON_CLASS} aria-hidden>
         <path

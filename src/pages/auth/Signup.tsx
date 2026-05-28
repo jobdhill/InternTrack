@@ -133,13 +133,13 @@ export default function Signup() {
 
       <p className="mt-5 text-[11px] text-center text-[#9CA3AF] leading-relaxed">
         By signing up you agree to our{" "}
-        <a href="#" className="underline hover:text-[#374151]">
+        <Link to="/terms" className="underline hover:text-[#374151]">
           Terms
-        </a>{" "}
+        </Link>{" "}
         and{" "}
-        <a href="#" className="underline hover:text-[#374151]">
+        <Link to="/terms" className="underline hover:text-[#374151]">
           Privacy Policy
-        </a>
+        </Link>
         .
       </p>
 
