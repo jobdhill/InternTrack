@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import BrandMark from "../components/auth/BrandMark";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 export default function Terms() {
+  useDocumentMeta({
+    title: "Privacy & Terms — InternNEXT",
+    description:
+      "InternNEXT's Privacy Policy and Terms of Service for the internship application tracker.",
+    path: "/terms",
+  });
+
   return (
     <div className="min-h-screen font-manrope bg-[#F8F8FA]">
       <header className="border-b border-[#E5E7EB] bg-white">

@@ -7,10 +7,18 @@ import Button from "../../components/ui/Button";
 import Label from "../../components/ui/Label";
 import { cn } from "../../lib/cn";
 import { supabase } from "../../lib/supabase";
+import { useDocumentMeta } from "../../lib/useDocumentMeta";
 
 const RESEND_SECONDS = 60;
 
 export default function VerifyEmail() {
+  useDocumentMeta({
+    title: "Verify your email — InternNEXT",
+    description: "Confirm your email address to finish setting up InternNEXT.",
+    path: "/verify",
+    index: false,
+  });
+
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const email = params.get("email") || "your email";

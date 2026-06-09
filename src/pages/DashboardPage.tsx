@@ -7,10 +7,18 @@ import Navbar from "../components/dashboard/Navbar";
 import type { Application } from "../types/application";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../lib/useAuth";
+import { useDocumentMeta } from "../lib/useDocumentMeta";
 
 const PAGE_SIZE = 15;
 
 export default function DashboardPage() {
+  useDocumentMeta({
+    title: "Dashboard — InternNEXT",
+    description: "Your internship application tracker and funnel analytics.",
+    path: "/app",
+    index: false,
+  });
+
   const { session } = useAuth();
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);

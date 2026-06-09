@@ -7,8 +7,16 @@ import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Label from "../../components/ui/Label";
 import { supabase } from "../../lib/supabase";
+import { useDocumentMeta } from "../../lib/useDocumentMeta";
 
 export default function Login() {
+  useDocumentMeta({
+    title: "Log in — InternNEXT",
+    description:
+      "Log in to InternNEXT to keep tracking your internship applications and response rates.",
+    path: "/login",
+  });
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

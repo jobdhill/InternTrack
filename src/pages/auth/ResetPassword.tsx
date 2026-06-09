@@ -5,8 +5,16 @@ import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Label from "../../components/ui/Label";
 import { supabase } from "../../lib/supabase";
+import { useDocumentMeta } from "../../lib/useDocumentMeta";
 
 export default function ResetPassword() {
+  useDocumentMeta({
+    title: "Choose a new password — InternNEXT",
+    description: "Set a new password for your InternNEXT account.",
+    path: "/reset-password",
+    index: false,
+  });
+
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");

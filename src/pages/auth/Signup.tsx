@@ -7,8 +7,16 @@ import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Label from "../../components/ui/Label";
 import { supabase } from "../../lib/supabase";
+import { useDocumentMeta } from "../../lib/useDocumentMeta";
 
 export default function Signup() {
+  useDocumentMeta({
+    title: "Sign up free — InternNEXT",
+    description:
+      "Create a free InternNEXT account to track every internship application, measure your funnel, and find your bottleneck. No credit card needed.",
+    path: "/signup",
+  });
+
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

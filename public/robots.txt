@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /$
+Allow: /login
+Allow: /signup
+Allow: /terms
+Disallow: /app
+Disallow: /verify
+Disallow: /forgot-password
+Disallow: /reset-password
+
+Sitemap: https://internnext.com/sitemap.xml
